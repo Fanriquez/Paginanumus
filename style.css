@@ -1,0 +1,113 @@
+/* ========== General ========== */
+:root{
+  --lila: #b59dd6;
+  --text: #111;
+  --muted: #666;
+  --card: #fff;
+}
+
+* { box-sizing: border-box; }
+body{
+  margin:0;
+  font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing:antialiased;
+  background: #f7f7f9;
+  color: var(--text);
+  line-height:1.3;
+  overflow-x:hidden;
+}
+
+/* Utilities */
+.hidden { display:none; }
+.container { max-width:450px; margin: -40px auto 24px; background:var(--card); border-radius:16px; padding:20px; box-shadow:0 6px 18px rgba(0,0,0,0.06); text-align:center; }
+
+/* ========== Splash ========== */
+/* splash ocupa toda la pantalla, fondo lila, logo centrado con borde blanco */
+#splash{
+  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+  background:var(--lila); z-index:9999;
+  /* la animación fade-out está controlada desde script.js (desaparece 1s después) */
+}
+.splash-logo{
+  width:140px; height:140px; object-fit:contain;
+  border-radius:50%;
+  background:white;
+  padding:10px;
+  border:4px solid white; /* borde blanco para destacar */
+  box-shadow:0 10px 30px rgba(0,0,0,0.18);
+}
+
+/* ========== Header ========== */
+.header{ background:var(--lila); padding:28px 0; text-align:center; }
+.logo{
+  width:110px; border-radius:50%; background:white; padding:8px; border:3px solid white; box-shadow:0 6px 12px rgba(0,0,0,0.08);
+}
+
+/* ========== Texto principal ========== */
+h1{ font-size:1.2rem; margin:0 0 8px; font-weight:700; color:#2b1f36; }
+.description{ color:var(--muted); font-size:0.95rem; margin-bottom:18px; }
+
+/* ========== Links principales ========== */
+.links{ display:flex; flex-direction:column; gap:10px; margin-top:6px; }
+.link-item{
+  display:flex; align-items:center; gap:12px; justify-content:space-between;
+  background:#fbfbfb; padding:10px 12px; border-radius:12px; cursor:pointer; transition:transform .12s, background .12s;
+}
+.link-item:hover{ transform:translateY(-3px); background:#f0f0f3; }
+.link-item img{ width:28px; height:28px; }
+.link-item span{ flex:1; text-align:left; font-weight:600; color:#2a1f33; }
+.link-item small{ color:var(--muted); font-size:12px; margin-left:8px; }
+.arrow{ color:#7f6b8a; font-size:1.1rem; }
+
+/* ========== Productos section ========== */
+.productos{ padding:18px 12px 36px; background:#fafafa; border-top:1px solid rgba(0,0,0,0.03); }
+.productos-inner{ max-width:980px; margin:0 auto; }
+.productos h2{ margin:6px 0 4px; color:#3a2b4a; font-size:1.25rem; }
+.productos .lead{ color:var(--muted); margin-bottom:14px; font-size:0.95rem; }
+
+/* ========== Carrusel ========== */
+.carousel{ position:relative; max-width:980px; margin:0 auto 14px; overflow:hidden; padding:0 36px; }
+.carousel-track{ display:flex; gap:12px; transition:transform .4s cubic-bezier(.2,.9,.2,1); padding:8px 0; }
+.producto{ min-width:210px; background:white; border-radius:14px; box-shadow:0 6px 18px rgba(0,0,0,0.06); overflow:hidden; flex-shrink:0; display:flex; flex-direction:column; }
+.producto img{ width:100%; height:150px; object-fit:cover; display:block; }
+.producto h3{ margin:10px; font-size:0.98rem; color:#2b1f36; }
+
+/* Flechas sutiles "< >" */
+.carousel-btn{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,0.9); border:none; width:36px; height:36px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 4px 10px rgba(0,0,0,0.08);
+  cursor:pointer; color:var(--lila); font-weight:700; font-size:18px; opacity:0.95;
+}
+.carousel-btn:hover{ transform:translateY(-50%) scale(1.03); }
+.prev{ left:8px; } .next{ right:8px; }
+
+/* ========== Upload form ========== */
+.upload-area{ margin-top:14px; background:white; padding:14px; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.03); text-align:left; }
+.upload-area h3{ margin:0 0 8px; font-size:1rem; color:#2b1f36; }
+.file-label{ display:inline-block; background:#f3f3f6; padding:8px 12px; border-radius:8px; cursor:pointer; margin-bottom:8px; }
+.file-label input{ display:none; }
+#product-title{ display:block; width:100%; padding:10px; margin:8px 0; border-radius:8px; border:1px solid #ececec; font-size:0.95rem; }
+.upload-actions{ display:flex; gap:8px; align-items:center; }
+.btn{ padding:10px 12px; border-radius:10px; border:none; cursor:pointer; font-weight:600; }
+.btn.add{ background:var(--lila); color:white; }
+.btn.alt{ background:#fff; border:1px solid #ddd; color:#444; }
+
+/* hint */
+.hint{ display:block; color:var(--muted); font-size:12px; margin-top:8px; }
+
+/* ========== Descargas ========== */
+.download-actions{ margin-top:12px; display:flex; gap:10px; align-items:center; justify-content:center; flex-wrap:wrap; }
+.btn-pdf{ display:inline-block; background:var(--lila); color:white; padding:10px 14px; border-radius:10px; text-decoration:none; font-weight:600; }
+
+/* ========== Footer ========== */
+.footer{ padding:20px; text-align:center; color:var(--muted); font-size:13px; }
+
+/* ========== Responsive ========== */
+@media (max-width:900px){ .container{ margin: -28px 16px 18px; } .carousel{ padding:0 12px; } .producto{ min-width:180px; } }
+@media (max-width:480px){
+  .logo{ width:92px; }
+  .splash-logo{ width:120px; height:120px; }
+  .producto img{ height:120px; }
+  .carousel-btn{ width:32px; height:32px; font-size:16px; }
+}
