@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NUMÚS - Escuela Nueva Música Chilena</title>
+
+  <!-- Estilos -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- jsPDF (CDN) para generar PDF desde el navegador -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+
+  <!-- Script principal -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- SPLASH: se muestra 1s y desaparece -->
+  <div id="splash" aria-hidden="false">
+    <img src="img/logo.png" alt="Logo NUMÚS" class="splash-logo" />
+  </div>
+
+  <!-- Contenido principal (oculto hasta que desaparezca el splash) -->
+  <div id="main-content" class="hidden" role="main">
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <img src="img/logo.png" alt="Logo NUMÚS" class="logo" />
+    </header>
+
+    <!-- INFORMACIÓN PRINCIPAL -->
+    <main class="container">
+      <h1>NUMÚS - ESCUELA NUEVA MÚSICA CHILENA</h1>
+      <p class="description">
+        Escuela nueva música Chilena — red de servicios musicales y colectivo enfocado a difundir y masificar la nueva música chilena.
+      </p>
+
+      <div class="links">
+        <div class="link-item" data-url="https://maps.app.goo.gl/VpUfFkhfgVs3qHDQA" role="button" tabindex="0">
+          <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@latest/assets/svg/1f4cd.svg" alt="" />
+          <span>Cómo llegar</span><span class="arrow">→</span>
+        </div>
+
+        <h2>Encuéntrame en</h2>
+
+        <div class="link-item" data-url="https://www.instagram.com/jeanchacanamusica" role="button" tabindex="0">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384063.png" alt="Instagram" />
+          <span>Instagram</span><span class="arrow">→</span>
+        </div>
+
+        <div class="link-item" data-url="https://wa.me/+56977412011" role="button" tabindex="0">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" />
+          <span>WhatsApp</span><span class="arrow">→</span>
+        </div>
+
+        <div class="link-item" data-url="https://youtube.com/@jeanchacanamusica?si=bvRk3FTy44idqP3b" role="button" tabindex="0">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube" />
+          <span>YouTube</span><span class="arrow">→</span>
+        </div>
+
+        <div class="link-item" data-url="https://g.page/r/Ce0EjBT02upDEBM/review" role="button" tabindex="0">
+          <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google" />
+          <span>Reseña de Google</span><small>¡Recomiéndanos en Google!</small>
+          <span class="arrow">→</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- SECCIÓN PRODUCTOS / SERVICIOS -->
+    <section class="productos" aria-labelledby="productos-title">
+      <div class="productos-inner">
+        <h2 id="productos-title">Crea, Aprende y Vive la Música con NUMÚS</h2>
+        <p class="lead">Descubre nuestros cursos, talleres y servicios musicales pensados para toda la familia.</p>
+
+        <!-- Carrusel -->
+        <div class="carousel" aria-roledescription="carousel">
+          <button class="carousel-btn prev" aria-label="Anterior">&lt;</button>
+          <div class="carousel-track" id="carousel-track">
+            <!-- Productos iniciales obtenidos del PDF: (si quieres puedes reemplazar las imágenes en /img/productos/) -->
+            <div class="producto" data-id="p1">
+              <img src="img/productos/iniciacion-musical.jpg" alt="After School de Iniciación Musical" />
+              <h3>After School de Iniciación Musical</h3>
+            </div>
+            <div class="producto" data-id="p2">
+              <img src="img/productos/escuela-verano.jpg" alt="Escuela Intensiva de Verano" />
+              <h3>Escuela Intensiva de Verano</h3>
+            </div>
+            <div class="producto" data-id="p3">
+              <img src="img/productos/clases-particulares.jpg" alt="Clases Particulares de Música" />
+              <h3>Clases Particulares de Música</h3>
+            </div>
+            <div class="producto" data-id="p4">
+              <img src="img/productos/talleres-intensivos.jpg" alt="Workshops o Talleres Intensivos" />
+              <h3>Talleres Intensivos</h3>
+            </div>
+            <div class="producto" data-id="p5">
+              <img src="img/productos/servicios-musicales.jpg" alt="Servicios Musicales Profesionales" />
+              <h3>Servicios Musicales Profesionales</h3>
+            </div>
+            <!-- Nuevos productos agregados por el usuario se insertarán aquí dinámicamente -->
+          </div>
+          <button class="carousel-btn next" aria-label="Siguiente">&gt;</button>
+        </div>
+
+        <!-- FORMULARIO SUBIR PRODUCTO (solo cliente-side) -->
+        <div class="upload-area" aria-hidden="false">
+          <h3>Añadir producto / servicio (imagen + título)</h3>
+          <form id="product-form">
+            <label class="file-label">
+              Seleccionar imagen
+              <input type="file" id="product-image" accept="image/*" />
+            </label>
+
+            <input type="text" id="product-title" placeholder="Título del producto o servicio" required />
+
+            <div class="upload-actions">
+              <button type="submit" class="btn add">Añadir al carrusel</button>
+              <button type="button" id="clear-form" class="btn alt">Limpiar</button>
+            </div>
+          </form>
+          <small class="hint">Las imágenes se almacenan solo en el navegador (no en servidor). Si quieres que sean permanentes, sube esos archivos al repositorio (carpeta <code>/img/productos/</code>).</small>
+        </div>
+
+        <!-- DESCARGAS -->
+        <div class="download-actions">
+          <!-- Descarga directa del PDF que subiste a /docs/ -->
+          <a href="docs/CATÁLOGO2025.pdf" download class="btn-pdf">📄 Descargar Catálogo Completo</a>
+
+          <!-- Generar PDF desde los productos actuales (cliente-side) -->
+          <button id="export-products-pdf" class="btn alt">🔽 Descargar PDF (productos actuales)</button>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <small>© NUMÚS - Escuela Nueva Música Chilena</small>
+    </footer>
+  </div>
+</body>
+</html>
